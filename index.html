@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SR Love World 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    overflow:hidden;
+}
+
+/* 🎬 INTRO */
+#intro{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:linear-gradient(120deg,#000,#1a001f,#000);
+    background-size:300% 300%;
+    animation:bgMove 6s infinite;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    color:white;
+    cursor:pointer;
+    z-index:999;
+}
+
+@keyframes bgMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+#intro h1{
+    font-family:'Playfair Display', serif;
+    font-size:24px;
+    animation:glow 2s infinite;
+}
+
+@keyframes glow{
+    0%,100%{opacity:0.5; transform:scale(1);}
+    50%{opacity:1; transform:scale(1.1);}
+}
+
+/* 💖 HEARTS */
+.heart{
+    position:absolute;
+    color:pink;
+    animation:floatUp 5s linear forwards;
+}
+
+@keyframes floatUp{
+    0%{transform:translateY(100vh);opacity:0;}
+    50%{opacity:1;}
+    100%{transform:translateY(-10vh);opacity:0;}
+}
+
+/* MAIN */
+.container{
+    display:none;
+    height:100vh;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    background:linear-gradient(135deg,#ffd1dc,#c9f0ff);
+}
+
+.container{
+    animation:popIn 0.8s ease;
+}
+
+@keyframes popIn{
+    from{transform:scale(0.8);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+
+.box{
+    background:rgba(255,255,255,0.45);
+    padding:25px;
+    border-radius:20px;
+    backdrop-filter:blur(12px);
+}
+
+.panda{
+    font-size:70px;
+}
+
+/* input */
+#wishInput{
+    margin-top:15px;
+    padding:12px;
+    width:250px;
+    border-radius:25px;
+    border:2px solid #ff7aa2;
+    outline:none;
+    text-align:center;
+}
+
+/* button */
+button{
+    margin-top:10px;
+    padding:10px 20px;
+    border:none;
+    border-radius:25px;
+    background:linear-gradient(135deg,#ff4f9a,#ff7ac6);
+    color:white;
+    cursor:pointer;
+}
+
+/* response */
+#wishResponse{
+    margin-top:15px;
+    font-size:22px;
+    color:#ff2f92;
+    font-family:'Dancing Script', cursive;
+    font-weight:bold;
+}
+
+/* butterflies */
+.butterfly{
+    position:absolute;
+    font-size:20px;
+    animation:fly 3s linear forwards;
+}
+
+@keyframes fly{
+    0%{transform:translateY(0);opacity:1;}
+    100%{transform:translateY(-200px) translateX(50px);opacity:0;}
+}
+
+/* fade */
+.fade-out{
+    opacity:0;
+    transform:scale(0.7);
+    transition:0.6s ease;
+}
+
+/* gallery */
+.gallery{
+    margin-top:20px;
+    text-align:center;
+    font-family:'Playfair Display', serif;
+    color:#ff2f92;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,80px);
+    gap:10px;
+    justify-content:center;
+    margin-top:10px;
+}
+
+.grid img{
+    width:80px;
+    height:80px;
+    object-fit:cover;
+    border-radius:12px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.grid img:hover{
+    transform:scale(1.1);
+}
+
+/* popup */
+#popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+#popup img{
+    max-width:90%;
+    max-height:80%;
+    border-radius:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro" onclick="enterSite()">
+    <h1>💖 TAP TO ENTER SR HEART 💖</h1>
+    <p>One click... You'll see his sweet place ✨</p>
+</div>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+    <source src="golden-brown.mp3" type="audio/mpeg">
+</audio>
+
+<!-- MAIN -->
+<div class="container" id="main">
+
+    <div class="box">
+
+        <div class="panda" id="panda">🐼</div>
+
+        <h2 id="welcomeText">Hey sweetie 💖</h2>
+
+        <input id="wishInput" placeholder="Make your b'day wish here..! 💌" />
+        <br>
+
+        <button onclick="sendWish()">Send Wish 💖</button>
+
+        <div id="wishResponse"></div>
+
+        <!-- GALLERY -->
+        <div class="gallery">
+            <h3>💖 Our Memories 💖</h3>
+            <div class="grid">
+                <img src="Screenshot_20260703_023910_com_hihonor_photos_SlotAlbumActivity.jpg" onclick="openImg(this.src)">
+                <img src="photo_6091397175431597961_c.jpg" onclick="openImg(this.src)">
+                <img src="photo_6080125390245532308_c.jpg" onclick="openImg(this.src)">
+                <img src="Screenshot_20260703_023035_org_telegram_messenger_LaunchActivity.jpg" onclick="openImg(this.src)">
+                <img src="Screenshot_20260703_023351_org_telegram_messenger_LaunchActivity_edit_7778739015309.jpg" onclick="openImg(this.src)">
+                <img src="Screenshot_20260629_225553_org_telegram_messenger_LaunchActivity_edit_7452381571290.jpg" onclick="openImg(this.src)">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- POPUP -->
+<div id="popup" onclick="closeImg()">
+    <img id="popupImg">
+</div>
+
+<script>
+
+const intro = document.getElementById("intro");
+const main = document.getElementById("main");
+const music = document.getElementById("bgMusic");
+
+const panda = document.getElementById("panda");
+const input = document.getElementById("wishInput");
+const welcomeText = document.getElementById("welcomeText");
+const res = document.getElementById("wishResponse");
+
+function enterSite(){
+    intro.style.opacity="0";
+    setTimeout(()=>{
+        intro.style.display="none";
+        main.style.display="flex";
+        music.play().catch(()=>{});
+    },800);
+}
+
+// hearts
+setInterval(()=>{
+    let h=document.createElement("div");
+    h.classList.add("heart");
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+},500);
+
+// typing
+function typeText(el,text,speed=60){
+    el.innerHTML="";
+    let i=0;
+    function t(){
+        if(i<text.length){
+            el.innerHTML+=text[i];
+            i++;
+            setTimeout(t,speed);
+        }
+    }
+    t();
+}
+
+// send wish (UPDATED CLEAN VERSION)
+function sendWish(){
+
+    if(input.value.trim()==""){
+        alert("Type your wish 💖");
+        return;
+    }
+
+    input.style.display="none";
+
+    panda.innerHTML="🙈😘";
+
+    // ❌ no message now (as requested)
+    res.innerHTML="";
+
+    typeText(welcomeText,"Love received successfully 💖",50);
+
+    launchConfetti();
+    spawnButterflies();
+}
+
+// confetti
+function launchConfetti(){
+    for(let i=0;i<40;i++){
+        let c=document.createElement("div");
+        c.innerHTML="✨";
+        c.style.position="absolute";
+        c.style.left=Math.random()*100+"vw";
+        c.style.top="0px";
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),2000);
+    }
+}
+
+// butterflies
+function spawnButterflies(){
+    for(let i=0;i<12;i++){
+        let b=document.createElement("div");
+        b.classList.add("butterfly");
+        b.innerHTML="🦋";
+        b.style.left=Math.random()*100+"vw";
+        b.style.top="60%";
+        document.body.appendChild(b);
+        setTimeout(()=>b.remove(),3000);
+    }
+}
+
+// popup
+function openImg(src){
+    document.getElementById("popup").style.display="flex";
+    document.getElementById("popupImg").src=src;
+}
+
+function closeImg(){
+    document.getElementById("popup").style.display="none";
+}
+
+</script>
+
+</body>
+</html>
